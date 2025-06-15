@@ -3,36 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mystic Falls Pomodoro</title>
+  <title>The Mystic Readathon</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Mystic Falls Pomodoro</h1>
-
-    <div class="timer-display" id="timer">25:00</div>
-
-    <div class="controls">
-      <label>
-        Work (1–90 min):
-        <input type="number" id="workMinutes" min="1" max="90" value="25">
-      </label>
-      <label>
-        Short Break (min):
-        <input type="number" id="shortBreak" value="20">
-      </label>
-      <label>
-        Long Break (min):
-        <input type="number" id="longBreak" value="30">
-      </label>
+  <div class="container" id="timer-box">
+    <div class="header">
+      <h1>The Mystic Readathon</h1>
+      <button id="settingsToggle" onclick="toggleDropdown('settingsDropdown')">⚙️</button>
+      <button onclick="minimizeBox('timer-box')">–</button>
     </div>
+    
+    <h2 id="mode">Reading/Productivity</h2>
+    <div class="timer-display" id="timer">25:00</div>
 
     <div class="buttons">
       <button onclick="startTimer()">Start</button>
       <button onclick="pauseTimer()">Pause</button>
       <button onclick="resetTimer()">Reset</button>
     </div>
+
+    <div id="settingsDropdown" class="hidden settings-dropdown">
+      <label>Reading/Productivity (min): <input type="number" id="workMinutes" min="1" max="90" value="25"></label>
+      <label>Short Break (min): <input type="number" id="shortBreak" value="5"></label>
+      <label>Long Break (min): <input type="number" id="longBreak" value="15"></label>
+      <label>Timer Sound:
+        <select id="soundSelect">
+          <option value="sounds/whoosh.mp3">Vampire Whoosh</option>
+          <option value="sounds/magic.mp3">Magic Chime</option>
+        </select>
+      </label>
+      <label>Choose Background:
+        <select onchange="changeBackground(this.value)">
+          <option value="backgrounds/mystic-grill.jpg">Mystic Grill</option>
+          <option value="backgrounds/clock-tower.jpg">Clock Tower</option>
+          <option value="backgrounds/town-square.jpg">Town Square</option>
+          <option value="backgrounds/wickery-bridge.jpg">Wickery Bridge</option>
+        </select>
+      </label>
+    </div>
   </div>
+
+  <div class="spotify-box" id="spotify-box">
+    <div class="header">
+      <strong>Spotify Player</strong>
+      <button onclick="minimizeBox('spotify-box')">–</button>
+    </div>
+    <input id="spotifyInput" type="text" placeholder="Paste Spotify Embed URL here" />
+    <button onclick="updateSpotifyEmbed()">Load Playlist</button>
+    <div id="spotify-controls" class="spotify-controls"></div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
