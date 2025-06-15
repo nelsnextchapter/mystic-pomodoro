@@ -1,100 +1,107 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: 'Georgia', serif;
   background-size: cover;
   background-position: center;
-  background-color: #000;
-  color: #f0f0f0;
+  background-repeat: no-repeat;
+  color: white;
 }
 
 .container,
 .spotify-box {
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 16px;
-  padding: 20px;
-  width: 320px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 1em;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
   z-index: 10;
-  position: absolute;
-  cursor: move;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  backdrop-filter: blur(8px);
 }
 
 #timer {
-  font-size: 48px;
-  text-align: center;
-  margin: 20px 0;
-  text-shadow: 0 0 10px rgba(255,255,255,0.6);
-}
-
-.controls {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.controls button,
-.controls select {
-  margin: 4px;
-  padding: 6px 10px;
-  font-size: 14px;
-  border-radius: 6px;
-  border: none;
-  background: #444;
-  color: white;
-  cursor: pointer;
-}
-
-.controls button:hover {
-  background: #666;
-}
-
-.dropdown {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.dropdown label {
-  margin: 5px 0;
+  font-size: 3em;
+  font-weight: bold;
+  text-shadow: 0 0 8px #fff;
 }
 
 .hidden {
   display: none;
 }
 
-#spotify-controls iframe {
+.buttons,
+.controls-row {
   margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.minimize {
-  float: right;
-  background: none;
-  color: white;
-  font-size: 18px;
+button {
+  padding: 5px 10px;
   border: none;
+  background-color: #444;
+  color: white;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
+button:hover {
+  background-color: #666;
+}
+
+.settings-toggle {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 1.2em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+.dropdown {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.dropdown label {
+  display: block;
+  margin: 5px 0;
+}
+
+input[type="number"],
+select,
+input[type="text"] {
+  width: 100%;
+  padding: 4px;
+  margin-top: 2px;
+  border-radius: 4px;
+  border: none;
+}
+
+#spotify-controls iframe {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
 }
 
 #minimized-buttons {
   position: fixed;
   bottom: 10px;
   left: 10px;
-  z-index: 20;
+  z-index: 100;
 }
 
 #minimized-buttons button {
-  margin-right: 5px;
-  background: rgba(0,0,0,0.7);
-  color: #fff;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 8px;
-  cursor: pointer;
+  margin: 5px 0;
+  font-size: 0.9em;
+  background-color: #222;
+}
+
+@media (min-width: 600px) {
+  .container {
+    width: 400px;
+  }
 }
