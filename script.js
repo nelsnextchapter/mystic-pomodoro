@@ -16,28 +16,6 @@ function updateDisplay() {
   if (modeDisplay) modeDisplay.textContent = currentMode;
 }
 
-function startTimer() {
-  if (isRunning) return;
-  isRunning = true;
-  let selectedMode = document.getElementById('modeSelect').value;
-  let minutes = getTimerMinutes(selectedMode);
-  totalTime = minutes * 60;
-  updateMode(selectedMode);
-  updateDisplay();
-
-  timer = setInterval(() => {
-    if (totalTime > 0) {
-      totalTime--;
-      updateDisplay();
-    } else {
-      clearInterval(timer);
-      isRunning = false;
-      playSound();
-      if (selectedMode === 'workMinutes') autoStartShortBreak();
-    }
-  }, 1000);
-}
-
 function getTimerMinutes(selectedMode) {
   if (selectedMode === 'workMinutes') return parseInt(document.getElementById('workMinutes').value);
   if (selectedMode === 'shortBreak') return parseInt(document.getElementById('shortBreak').value);
@@ -52,6 +30,27 @@ function updateMode(selectedMode) {
   } else {
     currentMode = 'Short Sprint';
   }
+}
+
+function startTimer() {
+  if (isRunning) return;
+  isRunning = true;
+  const selectedMode = document.getElementById('modeSelect').value;
+  totalTime = getTimerMinutes(selectedMode) * 60;
+  updateMode(selectedMode);
+  updateDisplay();
+
+  timer = setInterval(() => {
+    if (totalTime > 0) {
+      totalTime--;
+      updateDisplay();
+    } else {
+      clearInterval(timer);
+      isRunning = false;
+      playSound();
+      if (selectedMode === 'workMinutes') autoStartShortBreak();
+    }
+  }, 1000);
 }
 
 function autoStartShortBreak() {
@@ -80,9 +79,8 @@ function pauseTimer() {
 
 function resetTimer() {
   pauseTimer();
-  let selectedMode = document.getElementById('modeSelect').value;
-  let minutes = getTimerMinutes(selectedMode);
-  totalTime = minutes * 60;
+  const selectedMode = document.getElementById('modeSelect').value;
+  totalTime = getTimerMinutes(selectedMode) * 60;
   updateMode(selectedMode);
   updateDisplay();
 }
@@ -94,8 +92,7 @@ function playSound() {
 }
 
 function toggleDropdown(id) {
-  const dropdown = document.getElementById(id);
-  dropdown.classList.toggle('hidden');
+  document.getElementById(id).classList.toggle('hidden');
 }
 
 function changeBackground(value) {
@@ -113,8 +110,8 @@ function makeMovable(element) {
 
   window.addEventListener('mousemove', (e) => {
     if (isDragging) {
-      element.style.left = e.clientX - xOffset + 'px';
-      element.style.top = e.clientY - yOffset + 'px';
+      element.style.left = `${e.clientX - xOffset}px`;
+      element.style.top = `${e.clientY - yOffset}px`;
     }
   });
 
@@ -123,7 +120,7 @@ function makeMovable(element) {
   });
 }
 
-function minimizeBox(id, buttonId) {
+function minimizeBox(id) {
   const box = document.getElementById(id);
   box.classList.add('hidden');
   const restoreBtn = document.createElement('button');
@@ -143,33 +140,29 @@ function updateSpotifyEmbed() {
   container.innerHTML = embed;
 }
 
-// Set default times
+document.getElementById('modeSelect').addEventListener('change', () => {
+  const selectedMode = document.getElementById('modeSelect').value;
+  totalTime = getTimerMinutes(selectedMode) * 60;
+  updateMode(selectedMode);
+  updateDisplay();
+});
+
 window.onload = () => {
   document.getElementById('workMinutes').value = 60;
   document.getElementById('shortBreak').value = 20;
   document.getElementById('longBreak').value = 30;
+
   resetTimer();
   makeMovable(container);
   makeMovable(spotifyBox);
 
-  container.style.position = 'absolute';
   container.style.left = '50%';
   container.style.top = '50%';
   container.style.transform = 'translate(-50%, -50%)';
-  container.style.width = '600px'; // Expanded width
-  container.style.height = 'auto';
+  container.style.position = 'absolute';
 
-  spotifyBox.style.position = 'absolute';
   spotifyBox.style.left = '50%';
   spotifyBox.style.top = '70%';
   spotifyBox.style.transform = 'translate(-50%, -50%)';
-  spotifyBox.style.width = '350px';
+  spotifyBox.style.position = 'absolute';
 };
-
-document.getElementById('modeSelect').addEventListener('change', () => {
-  let selectedMode = document.getElementById('modeSelect').value;
-  let minutes = getTimerMinutes(selectedMode);
-  totalTime = minutes * 60;
-  updateMode(selectedMode);
-  updateDisplay();
-});
