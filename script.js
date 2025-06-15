@@ -7,6 +7,7 @@ const timerDisplay = document.getElementById('timer');
 const modeDisplay = document.getElementById('mode');
 const container = document.querySelector('.container');
 const spotifyBox = document.querySelector('.spotify-box');
+const minimizedButtons = document.getElementById('minimized-buttons');
 
 function updateDisplay() {
   const minutes = String(Math.floor(totalTime / 60)).padStart(2, '0');
@@ -18,9 +19,10 @@ function updateDisplay() {
 function startTimer() {
   if (isRunning) return;
   isRunning = true;
-  const workMinutes = parseInt(document.getElementById('workMinutes').value);
-  totalTime = workMinutes * 60;
-  currentMode = 'Reading/Productivity';
+  let selectedMode = document.getElementById('modeSelect').value;
+  let minutes = parseInt(document.getElementById(selectedMode).value);
+  totalTime = minutes * 60;
+  currentMode = selectedMode === 'workMinutes' ? 'Reading/Productivity' : (selectedMode === 'shortBreak' ? 'Break/Chat' : 'Long Break');
   updateDisplay();
 
   timer = setInterval(() => {
@@ -31,7 +33,7 @@ function startTimer() {
       clearInterval(timer);
       isRunning = false;
       playSound();
-      autoStartShortBreak();
+      if (selectedMode === 'workMinutes') autoStartShortBreak();
     }
   }, 1000);
 }
@@ -104,17 +106,37 @@ function makeMovable(element) {
   });
 }
 
-function minimizeBox(id) {
-  document.getElementById(id).classList.toggle('hidden');
+function minimizeBox(id, buttonId) {
+  const box = document.getElementById(id);
+  box.classList.add('hidden');
+  const restoreBtn = document.createElement('button');
+  restoreBtn.textContent = `Restore ${id}`;
+  restoreBtn.onclick = () => {
+    box.classList.remove('hidden');
+    restoreBtn.remove();
+  };
+  minimizedButtons.appendChild(restoreBtn);
 }
 
 function updateSpotifyEmbed() {
   const input = document.getElementById('spotifyInput').value;
   const container = document.getElementById('spotify-controls');
-  const embed = `<iframe src="${input}" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
+  const embedUrl = input.replace("https://open.spotify.com/", "https://open.spotify.com/embed/");
+  const embed = `<iframe src="${embedUrl}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
   container.innerHTML = embed;
 }
 
 resetTimer();
 makeMovable(container);
 makeMovable(spotifyBox);
+
+// Set initial positions
+container.style.position = 'absolute';
+container.style.left = '50%';
+container.style.top = '50%';
+container.style.transform = 'translate(-50%, -50%)';
+
+spotifyBox.style.position = 'absolute';
+spotifyBox.style.left = '50%';
+spotifyBox.style.top = '70%';
+spotifyBox.style.transform = 'translate(-50%, -50%)';
