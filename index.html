@@ -1,71 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Mystic Readathon</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Timer Container -->
-  <div class="container" id="timerBox">
+  <div class="container" id="main-box">
     <h2 id="mode">Reading/Productivity</h2>
-    <div id="timer">60:00</div>
-
-    <div class="buttons">
+    <div class="controls-row">
+      <select id="modeSelect">
+        <option value="workMinutes">Mode: Reading/Productivity</option>
+        <option value="shortBreak">Mode: Break/Chat</option>
+        <option value="longBreak">Mode: Short Sprint</option>
+      </select>
       <button onclick="startTimer()">Start</button>
       <button onclick="pauseTimer()">Pause</button>
       <button onclick="resetTimer()">Reset</button>
-      <button onclick="minimizeBox('timerBox')">–</button>
+      <button onclick="toggleDropdown('settings-dropdown')">⚙️</button>
+      <button onclick="minimizeBox('main-box', 'minimized-buttons')">_</button>
     </div>
 
-    <div class="controls-row">
-      <label for="modeSelect">Mode:</label>
-      <select id="modeSelect" onchange="resetTimer()">
-        <option value="workMinutes">Reading/Productivity</option>
-        <option value="shortBreak">Short Break</option>
-        <option value="longBreak">Long Break</option>
-      </select>
-    </div>
+    <div id="timer">60:00</div>
 
-    <!-- Settings -->
-    <button class="settings-toggle" onclick="toggleDropdown('settingsDropdown')">⚙️</button>
-    <div id="settingsDropdown" class="dropdown hidden">
-      <label>Reading/Productivity Minutes:
-        <input type="number" id="workMinutes" value="60">
+    <div id="settings-dropdown" class="hidden">
+      <label>Reading/Productivity (min): <input type="number" id="workMinutes" /></label>
+      <label>Short Break (min): <input type="number" id="shortBreak" /></label>
+      <label>Long Break (min): <input type="number" id="longBreak" /></label>
+      <label>Timer Sound:
+        <select id="soundSelect">
+          <option value="VampireBridgeSkid.mp3">Vampire Bridge Skid</option>
+          <option value="MysticGrillPool.mp3">Mystic Grill Pool</option>
+          <option value="WitchPain.mp3">Witch Pain</option>
+          <option value="ClockTowerBell.mp3">Clock Tower Bell</option>
+        </select>
       </label>
-      <label>Short Break Minutes:
-        <input type="number" id="shortBreak" value="20">
+      <label>Choose Background:
+        <select onchange="changeBackground(this.value)">
+          <option value="">Select Background</option>
+          <option value="Town Square.png">Town Square</option>
+          <option value="Clock Tower.png">Clock Tower</option>
+          <option value="Mystic Grill.png">Mystic Grill</option>
+        </select>
       </label>
-      <label>Long Break Minutes:
-        <input type="number" id="longBreak" value="30">
-      </label>
-      <label for="soundSelect">Timer Sound:</label>
-      <select id="soundSelect">
-        <option value="sounds/whoosh.mp3">Whoosh</option>
-        <option value="sounds/magic.mp3">Magic</option>
-        <!-- Add more options here -->
-      </select>
-      <label for="bgSelect">Choose Background:</label>
-      <select id="bgSelect" onchange="changeBackground(this.value)">
-        <option value="backgrounds/MysticGrill.jpg">Mystic Grill</option>
-        <option value="backgrounds/TownSquare.png">Town Square</option>
-        <!-- Add more options here -->
-      </select>
     </div>
   </div>
 
-  <!-- Spotify Player Box -->
-  <div class="spotify-box" id="spotifyBox">
-    <div>
-      <input type="text" id="spotifyInput" placeholder="Paste Spotify playlist URL">
-      <button onclick="updateSpotifyEmbed()">Load Playlist</button>
-      <button onclick="minimizeBox('spotifyBox')">–</button>
-    </div>
+  <div class="spotify-box" id="spotify-box">
+    <input id="spotifyInput" placeholder="Paste Spotify Playlist Link" />
+    <button onclick="updateSpotifyEmbed()">Load Playlist</button>
     <div id="spotify-controls"></div>
+    <button onclick="minimizeBox('spotify-box', 'minimized-buttons')">_</button>
   </div>
 
-  <!-- Restore Minimized -->
   <div id="minimized-buttons"></div>
 
   <script src="script.js"></script>
