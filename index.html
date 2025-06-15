@@ -6,56 +6,67 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="minimized-buttons"></div>
 
-  <div class="container" id="timerContainer">
-    <div class="header">
-      <span id="mode">Reading/Productivity</span>
-      <button class="minimize" onclick="minimizeBox('timerContainer')">–</button>
+  <!-- Timer Container -->
+  <div class="container" id="timerBox">
+    <h2 id="mode">Reading/Productivity</h2>
+    <div id="timer">60:00</div>
+
+    <div class="buttons">
+      <button onclick="startTimer()">Start</button>
+      <button onclick="pauseTimer()">Pause</button>
+      <button onclick="resetTimer()">Reset</button>
+      <button onclick="minimizeBox('timerBox')">–</button>
     </div>
 
-    <div id="timer">00:00</div>
-
-    <div class="controls">
-      <select id="modeSelect">
+    <div class="controls-row">
+      <label for="modeSelect">Mode:</label>
+      <select id="modeSelect" onchange="resetTimer()">
         <option value="workMinutes">Reading/Productivity</option>
         <option value="shortBreak">Short Break</option>
         <option value="longBreak">Long Break</option>
       </select>
-      <button onclick="startTimer()">Start</button>
-      <button onclick="pauseTimer()">Pause</button>
-      <button onclick="resetTimer()">Reset</button>
-      <button onclick="toggleDropdown('settingsDropdown')">⚙️</button>
     </div>
 
+    <!-- Settings -->
+    <button class="settings-toggle" onclick="toggleDropdown('settingsDropdown')">⚙️</button>
     <div id="settingsDropdown" class="dropdown hidden">
-      <label>Reading/Productivity (min): <input id="workMinutes" type="number" value="25"></label>
-      <label>Short Break (min): <input id="shortBreak" type="number" value="5"></label>
-      <label>Long Break (min): <input id="longBreak" type="number" value="15"></label>
-      <label>Timer Sound:
-        <select id="soundSelect">
-          <option value="sounds/whoosh.mp3">Vamp Speed</option>
-          <option value="sounds/magic.mp3">Magic Chime</option>
-        </select>
+      <label>Reading/Productivity Minutes:
+        <input type="number" id="workMinutes" value="60">
       </label>
-      <label>Choose Background:
-        <select onchange="changeBackground(this.value)">
-          <option value="backgrounds/mysticgrill.jpg">Mystic Grill</option>
-          <option value="backgrounds/clocktower.jpg">Clock Tower</option>
-        </select>
+      <label>Short Break Minutes:
+        <input type="number" id="shortBreak" value="20">
       </label>
+      <label>Long Break Minutes:
+        <input type="number" id="longBreak" value="30">
+      </label>
+      <label for="soundSelect">Timer Sound:</label>
+      <select id="soundSelect">
+        <option value="sounds/whoosh.mp3">Whoosh</option>
+        <option value="sounds/magic.mp3">Magic</option>
+        <!-- Add more options here -->
+      </select>
+      <label for="bgSelect">Choose Background:</label>
+      <select id="bgSelect" onchange="changeBackground(this.value)">
+        <option value="backgrounds/MysticGrill.jpg">Mystic Grill</option>
+        <option value="backgrounds/TownSquare.png">Town Square</option>
+        <!-- Add more options here -->
+      </select>
     </div>
   </div>
 
+  <!-- Spotify Player Box -->
   <div class="spotify-box" id="spotifyBox">
-    <div class="header">
-      <span>Spotify Player</span>
-      <button class="minimize" onclick="minimizeBox('spotifyBox')">–</button>
+    <div>
+      <input type="text" id="spotifyInput" placeholder="Paste Spotify playlist URL">
+      <button onclick="updateSpotifyEmbed()">Load Playlist</button>
+      <button onclick="minimizeBox('spotifyBox')">–</button>
     </div>
-    <input id="spotifyInput" type="text" placeholder="Paste Spotify playlist URL">
-    <button onclick="updateSpotifyEmbed()">Load Playlist</button>
     <div id="spotify-controls"></div>
   </div>
+
+  <!-- Restore Minimized -->
+  <div id="minimized-buttons"></div>
 
   <script src="script.js"></script>
 </body>
