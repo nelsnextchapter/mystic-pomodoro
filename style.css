@@ -1,57 +1,85 @@
 body {
   font-family: 'Georgia', serif;
-  background-image: url('background.jpg');
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url('backgrounds/mystic-grill.jpg');
   background-size: cover;
   background-position: center;
   color: #fff;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
-.container {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 30px;
-  border-radius: 15px;
+.container, .spotify-box {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 12px;
   text-align: center;
-  max-width: 400px;
-  width: 100%;
+  width: 300px;
+  z-index: 10;
+}
+
+.hidden {
+  display: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 h1 {
-  font-size: 2em;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
+  font-size: 1.5em;
+  margin: 0 0 10px;
+}
+
+h2 {
+  font-size: 1.2em;
+  margin: 10px 0;
 }
 
 .timer-display {
   font-size: 3em;
-  margin: 20px 0;
+  text-shadow: 0 0 10px #000;
 }
 
-.controls label {
-  display: block;
-  margin: 10px 0;
-}
-
-input {
-  padding: 5px;
-  width: 60px;
-  text-align: center;
-  border-radius: 5px;
-  border: none;
-}
-
-.buttons button {
-  margin: 10px;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
+.buttons button,
+.settings-dropdown select,
+.settings-dropdown input,
+.spotify-box input,
+.spotify-box button {
+  margin: 5px;
+  padding: 8px;
   font-size: 1em;
-  background-color: #8b0000;
+  border-radius: 6px;
+  border: none;
+}
+
+button {
+  background: #8b0000;
   color: white;
   cursor: pointer;
+}
+
+#settingsToggle {
+  background: none;
+  font-size: 1.2em;
+  padding: 0;
+}
+
+.settings-dropdown label {
+  display: block;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.spotify-controls iframe {
+  width: 100%;
+  height: 80px;
+  border: none;
+  margin-top: 10px;
 }
