@@ -4,77 +4,66 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Mystic Readathon</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-
-  <div class="container" id="main-box">
-    <div class="top-right-buttons">
-      <button onclick="toggleDropdown('settings-dropdown')">⚙️</button>
-      <button onclick="minimizeBox('main-box', 'minimized-buttons')">_</button>
+  <div class="container">
+    <div class="header">
+      <h1>The Mystic Readathon</h1>
+      <div class="controls">
+        <button id="toggle-settings">⚙️</button>
+        <button id="minimize">—</button>
+      </div>
     </div>
 
-    <h2 id="mode">Reading/Productivity</h2>
-    <div id="timer">60:00</div>
+    <div class="timer-box">
+      <div class="timer" id="timer">25:00</div>
+      <div class="phase-label" id="phase-label">Reading/Productivity</div>
+      <div class="button-row">
+        <label for="mode">Mode:</label>
+        <select id="mode">
+          <option value="work">Reading/Productivity</option>
+          <option value="shortBreak">Short Break</option>
+          <option value="longBreak">Long Break</option>
+        </select>
+        <button id="start">Start</button>
+        <button id="pause">Pause</button>
+        <button id="reset">Reset</button>
+      </div>
+    </div>
 
-    <div class="controls-row">
-      <select id="modeSelect">
-        <option value="workMinutes">Mode: Reading/Productivity</option>
-        <option value="shortBreak">Mode: Break/Chat</option>
-        <option value="longBreak">Mode: Short Sprint</option>
+    <div id="settings-panel" class="hidden">
+      <label for="workDuration">Reading/Productivity (min):</label>
+      <input type="number" id="workDuration" value="25"/>
+      <label for="shortBreakDuration">Short Break (min):</label>
+      <input type="number" id="shortBreakDuration" value="5"/>
+      <label for="longBreakDuration">Long Break (min):</label>
+      <input type="number" id="longBreakDuration" value="15"/>
+      <label for="backgroundSelect">Choose Background:</label>
+      <select id="backgroundSelect">
+        <option value="bridge.png">Wickery Bridge</option>
+        <option value="grill.png">Mystic Grill</option>
+        <option value="100DeadWitches.png">Witch House</option>
+        <option value="NightClockTower.png">Clock Tower (Night)</option>
+        <option value="TownSquare.png">Town Square</option>
       </select>
-      <button onclick="startTimer()">Start</button>
-      <button onclick="pauseTimer()">Pause</button>
-      <button onclick="resetTimer()">Reset</button>
+      <label for="soundSelect">End Sound:</label>
+      <select id="soundSelect">
+        <option value="VampireBridgeSkid.mp3">Vampire Skid</option>
+        <option value="MysticGrillPool.mp3">Mystic Grill</option>
+        <option value="WitchPain.mp3">Witch Pain</option>
+        <option value="ClockTowerBell.mp3">Clock Tower Bell</option>
+      </select>
     </div>
 
-    <div id="settings-dropdown" class="hidden">
-      <div class="settings-row">
-        <label for="workMinutes">Reading/Productivity (min):</label>
-        <input type="number" id="workMinutes" />
-      </div>
-      <div class="settings-row">
-        <label for="shortBreak">Short Break (min):</label>
-        <input type="number" id="shortBreak" />
-      </div>
-      <div class="settings-row">
-        <label for="longBreak">Long Break (min):</label>
-        <input type="number" id="longBreak" />
-      </div>
-      <div class="settings-row">
-        <label for="soundSelect">Timer Sound:</label>
-        <select id="soundSelect">
-          <option value="VampireBridgeSkid.mp3">Vampire Bridge Skid</option>
-          <option value="MysticGrillPool.mp3">Mystic Grill Pool</option>
-          <option value="WitchPain.mp3">Witch Pain</option>
-          <option value="ClockTowerBell.mp3">Clock Tower Bell</option>
-        </select>
-      </div>
-      <div class="settings-row">
-        <label for="bgSelect">Choose Background:</label>
-        <select id="bgSelect" onchange="changeBackground(this.value)">
-          <option value="">Select Background</option>
-          <option value="Town Square.png">Town Square</option>
-          <option value="Clock Tower.png">Clock Tower</option>
-          <option value="Mystic Grill.png">Mystic Grill</option>
-        </select>
-      </div>
+    <div class="spotify-box">
+      <iframe style="border-radius:12px"
+              src="https://open.spotify.com/embed/playlist/YOUR_PLAYLIST_ID?utm_source=generator&theme=0"
+              width="100%" height="152" frameBorder="0"
+              allowtransparency="true" allow="encrypted-media">
+      </iframe>
     </div>
   </div>
-
-  <div class="spotify-box" id="spotify-box">
-    <input id="spotifyInput" placeholder="Paste Spotify Playlist Link" />
-    <button onclick="updateSpotifyEmbed()">Load Playlist</button>
-    <div id="spotify-controls"></div>
-    <div class="volume-row">
-      <label for="spotifyVolume">Volume:</label>
-      <input type="range" id="spotifyVolume" min="0" max="1" step="0.01" value="1" onchange="setSpotifyVolume()" />
-      <button onclick="toggleSpotifyMute()">🔇</button>
-    </div>
-    <button onclick="minimizeBox('spotify-box', 'minimized-buttons')">_</button>
-  </div>
-
-  <div id="minimized-buttons"></div>
 
   <script src="script.js"></script>
 </body>
