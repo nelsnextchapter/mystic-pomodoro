@@ -2,6 +2,8 @@ let timer;
 let totalTime;
 let isRunning = false;
 let currentMode = 'Reading/Productivity';
+let isMuted = false;
+let currentSpotifyVolume = 1;
 
 const timerDisplay = document.getElementById('timer');
 const modeDisplay = document.getElementById('mode');
@@ -138,6 +140,21 @@ function updateSpotifyEmbed() {
   const embedUrl = input.replace("https://open.spotify.com/", "https://open.spotify.com/embed/");
   const embed = `<iframe src="${embedUrl}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
   container.innerHTML = embed;
+}
+
+function setSpotifyVolume() {
+  const vol = parseFloat(document.getElementById('spotifyVolume').value);
+  currentSpotifyVolume = vol;
+  document.querySelectorAll('iframe').forEach(frame => {
+    frame.contentWindow.postMessage({ type: 'setVolume', value: vol }, '*');
+  });
+}
+
+function toggleSpotifyMute() {
+  const slider = document.getElementById('spotifyVolume');
+  isMuted = !isMuted;
+  slider.value = isMuted ? 0 : currentSpotifyVolume;
+  setSpotifyVolume();
 }
 
 document.getElementById('modeSelect').addEventListener('change', () => {
