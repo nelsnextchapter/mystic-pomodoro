@@ -9,7 +9,14 @@
 <body>
 
   <div class="container" id="main-box">
+    <div class="top-right-buttons">
+      <button onclick="toggleDropdown('settings-dropdown')">⚙️</button>
+      <button onclick="minimizeBox('main-box', 'minimized-buttons')">_</button>
+    </div>
+
     <h2 id="mode">Reading/Productivity</h2>
+    <div id="timer">60:00</div>
+
     <div class="controls-row">
       <select id="modeSelect">
         <option value="workMinutes">Mode: Reading/Productivity</option>
@@ -19,32 +26,39 @@
       <button onclick="startTimer()">Start</button>
       <button onclick="pauseTimer()">Pause</button>
       <button onclick="resetTimer()">Reset</button>
-      <button onclick="toggleDropdown('settings-dropdown')">⚙️</button>
-      <button onclick="minimizeBox('main-box', 'minimized-buttons')">_</button>
     </div>
 
-    <div id="timer">60:00</div>
-
     <div id="settings-dropdown" class="hidden">
-      <label>Reading/Productivity (min): <input type="number" id="workMinutes" /></label>
-      <label>Short Break (min): <input type="number" id="shortBreak" /></label>
-      <label>Long Break (min): <input type="number" id="longBreak" /></label>
-      <label>Timer Sound:
+      <div class="settings-row">
+        <label for="workMinutes">Reading/Productivity (min):</label>
+        <input type="number" id="workMinutes" />
+      </div>
+      <div class="settings-row">
+        <label for="shortBreak">Short Break (min):</label>
+        <input type="number" id="shortBreak" />
+      </div>
+      <div class="settings-row">
+        <label for="longBreak">Long Break (min):</label>
+        <input type="number" id="longBreak" />
+      </div>
+      <div class="settings-row">
+        <label for="soundSelect">Timer Sound:</label>
         <select id="soundSelect">
           <option value="VampireBridgeSkid.mp3">Vampire Bridge Skid</option>
           <option value="MysticGrillPool.mp3">Mystic Grill Pool</option>
           <option value="WitchPain.mp3">Witch Pain</option>
           <option value="ClockTowerBell.mp3">Clock Tower Bell</option>
         </select>
-      </label>
-      <label>Choose Background:
-        <select onchange="changeBackground(this.value)">
+      </div>
+      <div class="settings-row">
+        <label for="bgSelect">Choose Background:</label>
+        <select id="bgSelect" onchange="changeBackground(this.value)">
           <option value="">Select Background</option>
           <option value="Town Square.png">Town Square</option>
           <option value="Clock Tower.png">Clock Tower</option>
           <option value="Mystic Grill.png">Mystic Grill</option>
         </select>
-      </label>
+      </div>
     </div>
   </div>
 
@@ -52,6 +66,11 @@
     <input id="spotifyInput" placeholder="Paste Spotify Playlist Link" />
     <button onclick="updateSpotifyEmbed()">Load Playlist</button>
     <div id="spotify-controls"></div>
+    <div class="volume-row">
+      <label for="spotifyVolume">Volume:</label>
+      <input type="range" id="spotifyVolume" min="0" max="1" step="0.01" value="1" onchange="setSpotifyVolume()" />
+      <button onclick="toggleSpotifyMute()">🔇</button>
+    </div>
     <button onclick="minimizeBox('spotify-box', 'minimized-buttons')">_</button>
   </div>
 
