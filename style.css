@@ -4,77 +4,140 @@ body {
   font-family: 'Georgia', serif;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
   color: #fff;
 }
 
-.container {
+#timer-container,
+#spotify-box {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #555;
   padding: 20px;
-  background-color: rgba(20, 20, 20, 0.5);
-  border-radius: 15px;
-  max-width: 500px;
-  margin: 50px auto;
-  position: relative;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  position: absolute;
+  cursor: move;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+#spotify-box {
+  width: 340px;
 }
 
-.controls button {
-  background: none;
-  border: none;
-  font-size: 20px;
-  color: #fff;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-.timer-box {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.timer {
+#timer {
   font-size: 64px;
   font-weight: bold;
-  text-shadow: 0 0 10px #000;
-}
-
-.phase-label {
+  text-align: center;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
   margin-bottom: 10px;
-  font-size: 20px;
-  text-shadow: 0 0 5px #000;
 }
 
-.button-row {
+.controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 10px;
 }
 
-.button-row label, .button-row select, .button-row button {
-  margin: 5px;
-}
-
-#settings-panel {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 10px;
+.controls select,
+.controls button {
   font-size: 14px;
+  margin: 5px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
 }
 
-.hidden {
+.controls button:hover {
+  background-color: #555;
+}
+
+.settings-button,
+.minimize-button {
+  position: absolute;
+  top: 8px;
+  width: 30px;
+  height: 30px;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.settings-button {
+  right: 45px;
+}
+
+.minimize-button {
+  right: 10px;
+}
+
+#settings {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #888;
   display: none;
 }
 
-.spotify-box {
-  margin-top: 20px;
-  background-color: rgba(30, 30, 30, 0.6);
-  border-radius: 12px;
-  padding: 10px;
+.settings-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 6px 0;
+}
+
+.settings-group label {
+  flex: 1;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.settings-group input,
+.settings-group select {
+  flex: 1;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  background-color: #222;
+  color: #fff;
+}
+
+#spotify-controls {
+  margin-top: 10px;
+}
+
+#minimized-buttons {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 100;
+}
+
+#minimized-buttons button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#minimized-buttons button:hover {
+  background-color: #666;
+}
+
+.hidden {
+  display: none !important;
 }
