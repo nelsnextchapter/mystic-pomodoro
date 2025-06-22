@@ -14,20 +14,28 @@
       <button onclick="minimizeBox('timer-container', 'minimized-buttons')">➖</button>
     </div>
 
-    <div id="timer" class="glow-text">60:00</div>
+    <!-- Mode heading -->
     <div id="mode">Reading/Productivity</div>
-    <div class="controls-row">
-      <select id="modeSelect">
-        <option value="workMinutes">Reading/Productivity</option>
-        <option value="shortBreak">Break/Chat</option>
-        <option value="longBreak">Short Sprint</option>
-      </select>
-      <button onclick="startTimer()">Start</button>
-      <button onclick="pauseTimer()">Pause</button>
-      <button onclick="resetTimer()">Reset</button>
-    </div>
-  </div>
 
+    <!-- Timer -->
+    <div id="timer" class="glow-text">60:00</div>
+    
+    <!-- Controls -->
+    <div class="controls-row">
+      <div class="dropdown">
+      <button onclick="toggleDropdown('modeDropdown')">Mode ⌄</button>
+      <div id="modeDropdown" class="dropdown-content hidden">
+        <div onclick="changeMode('Reading/Productivity')">Reading/Productivity</div>
+        <div onclick="changeMode('Break/Chat')">Break/Chat</div>
+        <div onclick="changeMode('Short Sprint')">Short Sprint</div>
+      </div>
+    </div>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="pauseTimer()">Pause</button>
+    <button onclick="resetTimer()">Reset</button>
+    </div>
+    
+<!-- Settings box MOVED here -->
   <div class="settings-box hidden" id="settingsBox">
     <label for="workMinutes">Reading/Productivity (min):</label>
     <input id="workMinutes" type="number" min="1" />
@@ -55,7 +63,8 @@
       <option value="TownSquare.png">Town Square</option>
     </select>
   </div>
-
+</div>
+  
   <div class="spotify-box" id="spotify-box">
     <div class="top-buttons">
       <button onclick="minimizeBox('spotify-box', 'minimized-buttons')">➖</button>
