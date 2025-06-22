@@ -188,6 +188,11 @@ window.onload = () => {
   document.getElementById('shortBreak').value = 20;
   document.getElementById('longBreak').value = 30;
 
+  // Test restore button creation manually:
+  const testBtn = document.createElement('button');
+  testBtn.textContent = "Test Restore Button";
+  document.getElementById('minimized-buttons').appendChild(testBtn);
+
 
   // Positioning
   container.style.position = 'absolute';
