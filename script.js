@@ -172,6 +172,9 @@ window.onload = () => {
   document.getElementById('workMinutes').value = 60;
   document.getElementById('shortBreak').value = 20;
   document.getElementById('longBreak').value = 30;
+  makeMovable(document.getElementById('timer-container'));
+  makeMovable(document.getElementById('spotify-box'));
+
 
   resetTimer();
 
