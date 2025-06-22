@@ -234,10 +234,10 @@ body {
   border-radius: 4px;
 }
 
-#minimized-buttons {
-  background: rgba(0, 0, 0, 0.3);
-  border: 3px solid lime;
-}
-#minimized-buttons button {
-  border: 2px solid orange;
+restoreBtn.style.display = 'inline-block';
+restoreBtn.style.background = 'red';
+restoreBtn.style.color = 'white';
+restoreBtn.style.padding = '8px';
+restoreBtn.style.margin = '0 5px';
+restoreBtn.style.zIndex = '9999';
 }
