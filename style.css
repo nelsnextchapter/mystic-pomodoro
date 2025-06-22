@@ -146,6 +146,7 @@ body {
 #mode {
   font-size: 28px;
   text-align: center;
+  margin-top: 20px;
   margin-bottom: 10px;
   font-weight: bold;
 }
