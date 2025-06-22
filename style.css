@@ -112,7 +112,11 @@ body {
 }
 
 #spotify-controls {
-  margin-top: 30px;
+  margin-top: 10px;
+}
+
+#spotifyInput {
+  margin-top: 20px; 
 }
 
 #minimized-buttons {
