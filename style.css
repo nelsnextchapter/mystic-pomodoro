@@ -205,15 +205,3 @@ body {
   margin-top: 10px;
 }
 
-/* force timer settings fields line up  */
-label {
-  display: inline-block;
-  width: 120px; /* fixed width for alignment */
-  margin-bottom: 10px;
-}
-
-input[type="number"] {
-  display: inline-block;
-  width: 60px;
-  margin-bottom: 10px;
-}
