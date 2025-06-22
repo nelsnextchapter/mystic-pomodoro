@@ -118,28 +118,34 @@ function changeBackground(value) {
 }
 
 function makeMovable(element) {
-  let isDragging = false, xOffset = 0, yOffset = 0;
+  let xOffset = 0, yOffset = 0;
 
   element.addEventListener('mousedown', (e) => {
-    if (e.target.tagName === 'BUTTON' || e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return;
-    isDragging = true;
+    // Ignore if clicking buttons, selects, inputs inside the element
+    if (['BUTTON', 'SELECT', 'INPUT'].includes(e.target.tagName)) return;
+
+    e.preventDefault(); // prevent text selection during drag
+
     xOffset = e.clientX - element.offsetLeft;
     yOffset = e.clientY - element.offsetTop;
     element.style.zIndex = 1000;
-  });
 
-  window.addEventListener('mousemove', (e) => {
-    if (isDragging) {
-      element.style.left = e.clientX - xOffset + 'px';
-      element.style.top = e.clientY - yOffset + 'px';
+    function onMouseMove(eMove) {
+      element.style.left = eMove.clientX - xOffset + 'px';
+      element.style.top = eMove.clientY - yOffset + 'px';
     }
-  });
 
-  window.addEventListener('mouseup', () => {
-    isDragging = false;
-    element.style.zIndex = '';
+    function onMouseUp() {
+      element.style.zIndex = '';
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    }
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
   });
 }
+
 
 function minimizeBox(id, buttonContainerId) {
   const box = document.getElementById(id);
