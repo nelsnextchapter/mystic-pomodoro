@@ -115,6 +115,11 @@ body {
   margin-top: 10px;
 }
 
+#spotifyInput {
+  margin-top: 20px; /* adjust value as needed */
+}
+
+
 #minimized-buttons {
   position: fixed;
   bottom: 10px;
