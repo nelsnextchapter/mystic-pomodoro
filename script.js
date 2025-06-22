@@ -19,7 +19,7 @@ function updateDisplay() {
 function startTimer() {
   if (isRunning) return;
   isRunning = true;
-  const selectedMode = document.getElementById('modeSelect').value;
+  const selectedMode = currentModeToKey(currentMode);
   const minutes = getTimerMinutes(selectedMode);
   totalTime = minutes * 60;
   updateMode(selectedMode);
@@ -80,7 +80,7 @@ function pauseTimer() {
 
 function resetTimer() {
   pauseTimer();
-  const selectedMode = document.getElementById('modeSelect').value;
+  const selectedMode = currentModeToKey(currentMode);
   const minutes = getTimerMinutes(selectedMode);
   totalTime = minutes * 60;
   updateMode(selectedMode);
@@ -96,6 +96,13 @@ function playSound() {
 function toggleDropdown(id) {
   const dropdown = document.getElementById(id);
   dropdown.classList.toggle('hidden');
+}
+
+function changeMode(modeText) {
+  currentMode = modeText;
+  updateDisplay();
+  toggleDropdown('modeDropdown'); // hides dropdown after selecting
+  resetTimer(); // optional: auto-update timer when changing mode
 }
 
 function changeBackground(value) {
@@ -172,11 +179,5 @@ window.onload = () => {
   makeMovable(spotifyBox);
 };
 
-// Live update on dropdown change
-document.getElementById('modeSelect').addEventListener('change', () => {
-  const selectedMode = document.getElementById('modeSelect').value;
-  const minutes = getTimerMinutes(selectedMode);
-  totalTime = minutes * 60;
-  updateMode(selectedMode);
-  updateDisplay();
+
 });
