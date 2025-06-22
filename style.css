@@ -148,6 +148,8 @@ body {
 }
 
 #mode {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  color: #fff;
   font-size: 28px;
   text-align: center;
   margin-top: 20px;
@@ -203,4 +205,17 @@ body {
   gap: 8px;
   justify-content: center;
   margin-top: 10px;
+}
+
+/* force timer settings fields line up  */
+label {
+  display: inline-block;
+  width: 120px; /* fixed width for alignment */
+  margin-bottom: 10px;
+}
+
+input[type="number"] {
+  display: inline-block;
+  width: 60px;
+  margin-bottom: 10px;
 }
