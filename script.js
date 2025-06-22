@@ -9,6 +9,14 @@ const container = document.getElementById('timer-container');
 const spotifyBox = document.getElementById('spotify-box');
 const minimizedButtons = document.getElementById('minimized-buttons');
 
+function currentModeToKey(modeText) {
+  if (modeText === 'Reading/Productivity') return 'workMinutes';
+  if (modeText === 'Break/Chat') return 'shortBreak';
+  if (modeText === 'Short Sprint') return 'longBreak';
+  // fallback in case of unexpected modeText
+  return 'workMinutes';
+}
+
 function updateDisplay() {
   const minutes = String(Math.floor(totalTime / 60)).padStart(2, '0');
   const seconds = String(totalTime % 60).padStart(2, '0');
