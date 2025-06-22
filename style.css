@@ -133,9 +133,18 @@ body {
   display: flex;
   gap: 10px;
   z-index: 100;
+  /* Add these: */
+  min-width: 200px; /* or adjust as needed */
+  min-height: 40px;
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.5); /* temporary for visibility */
+  border-radius: 8px;
+  align-items: center; /* vertically center buttons */
+  justify-content: center;
 }
 
 #minimized-buttons button {
+  display: inline-block;
   padding: 6px 12px;
   font-size: 14px;
   border-radius: 8px;
@@ -144,6 +153,7 @@ body {
   border: none;
   cursor: pointer;
 }
+
 
 #minimized-buttons button:hover {
   background-color: #666;
@@ -234,10 +244,4 @@ body {
   border-radius: 4px;
 }
 
-restoreBtn.style.display = 'inline-block';
-restoreBtn.style.background = 'red';
-restoreBtn.style.color = 'white';
-restoreBtn.style.padding = '8px';
-restoreBtn.style.margin = '0 5px';
-restoreBtn.style.zIndex = '9999';
-}
+
