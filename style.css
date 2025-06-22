@@ -22,8 +22,21 @@ body {
   cursor: move;
 }
 
+#timer-container {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  margin-left: -225px; /* half of 450px */
+  margin-top: -150px;  /* approx half height, adjust as needed */
+}
+
 #spotify-box {
   width: 340px;
+  position: absolute;
+  left: 50%;
+  top: 65%;
+  margin-left: -170px; /* half of 340px */
+  margin-top: -100px;  /* approx half height, adjust as needed */
 }
 
 #timer {
