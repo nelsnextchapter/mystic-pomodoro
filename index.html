@@ -37,15 +37,22 @@
     
 <!-- Settings box MOVED here -->
   <div class="settings-box hidden" id="settingsBox">
+  <div class="setting-row">
     <label for="workMinutes">Reading/Productivity (min):</label>
     <input id="workMinutes" type="number" min="1" />
+  </div>
 
+  <div class="setting-row">
     <label for="shortBreak">Break/Chat (min):</label>
     <input id="shortBreak" type="number" min="1" />
+  </div>
 
+  <div class="setting-row">
     <label for="longBreak">Short Sprint (min):</label>
     <input id="longBreak" type="number" min="1" />
+  </div>
 
+  <div class="setting-row">
     <label for="soundSelect">Timer End Sound:</label>
     <select id="soundSelect">
       <option value="VampireBridgeSkid.mp3">Vampire Bridge Skid</option>
@@ -53,7 +60,9 @@
       <option value="WitchPain.mp3">Witch Pain</option>
       <option value="ClockTowerBell.mp3">Clock Tower Bell</option>
     </select>
+  </div>
 
+  <div class="setting-row">
     <label for="backgroundSelect">Choose Background:</label>
     <select id="backgroundSelect" onchange="changeBackground(this.value)">
       <option value="bridge.png">Bridge</option>
@@ -64,6 +73,7 @@
     </select>
   </div>
 </div>
+
   
   <div class="spotify-box" id="spotify-box">
     <div class="top-buttons">
