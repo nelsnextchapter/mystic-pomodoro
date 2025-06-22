@@ -169,6 +169,10 @@ function minimizeBox(id, buttonContainerId) {
   const restoreBtn = document.createElement('button');
   restoreBtn.id = 'restore-' + id;
   restoreBtn.textContent = `Restore ${id.includes("spotify") ? "Spotify" : "Timer"}`;
+  
+  // DEBUG: add visible border temporarily
+  restoreBtn.style.border = "2px solid red";
+  
   restoreBtn.onclick = () => {
     box.classList.remove('hidden');
     restoreBtn.remove();
