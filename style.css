@@ -200,4 +200,16 @@ body {
   justify-content: center;
   margin-top: 10px;
 }
+.settings-box label {
+  display: inline-block;
+  width: 180px; /* adjust as needed */
+  margin-bottom: 8px;
+}
+
+.settings-box input,
+.settings-box select {
+  display: inline-block;
+  width: 120px; /* adjust to your liking */
+  margin-bottom: 8px;
+}
 
