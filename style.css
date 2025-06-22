@@ -141,3 +141,60 @@ body {
 .hidden {
   display: none !important;
 }
+
+#mode {
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown button {
+  background-color: #333;
+  color: white;
+  padding: 6px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: #222;
+  min-width: 160px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  z-index: 5;
+  top: 36px;
+  left: 0;
+}
+
+.dropdown-content div {
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-content div:hover {
+  background-color: #444;
+}
+
+.settings-box {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #888;
+}
+
+.controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
+}
