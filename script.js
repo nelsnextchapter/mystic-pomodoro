@@ -25,18 +25,13 @@ function updateDisplay() {
 }
 
 function startTimer() {
-  if (isRunning) return; // already running, do nothing
-
-  // If totalTime is undefined or zero, initialize it
-  if (!totalTime || totalTime <= 0) {
-    const selectedMode = currentModeToKey(currentMode);
-    const minutes = getTimerMinutes(selectedMode);
-    totalTime = minutes * 60;
-    updateMode(selectedMode);
-    updateDisplay();
-  }
-
+  if (isRunning) return;
   isRunning = true;
+  const selectedMode = currentModeToKey(currentMode);
+  const minutes = getTimerMinutes(selectedMode);
+  totalTime = minutes * 60;
+  updateMode(selectedMode);
+  updateDisplay();
 
   timer = setInterval(() => {
     if (totalTime > 0) {
@@ -46,14 +41,10 @@ function startTimer() {
       clearInterval(timer);
       isRunning = false;
       playSound();
-
-      if (currentMode === 'Reading/Productivity') {
-        autoStartShortBreak();
-      }
+      if (selectedMode === 'workMinutes') autoStartShortBreak();
     }
   }, 1000);
 }
-
 
 function getTimerMinutes(selectedMode) {
   if (selectedMode === 'workMinutes') return parseInt(document.getElementById('workMinutes').value);
@@ -127,34 +118,28 @@ function changeBackground(value) {
 }
 
 function makeMovable(element) {
-  let xOffset = 0, yOffset = 0;
+  let isDragging = false, xOffset = 0, yOffset = 0;
 
   element.addEventListener('mousedown', (e) => {
-    // Ignore if clicking buttons, selects, inputs inside the element
-    if (['BUTTON', 'SELECT', 'INPUT'].includes(e.target.tagName)) return;
-
-    e.preventDefault(); // prevent text selection during drag
-
+    if (e.target.tagName === 'BUTTON' || e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return;
+    isDragging = true;
     xOffset = e.clientX - element.offsetLeft;
     yOffset = e.clientY - element.offsetTop;
     element.style.zIndex = 1000;
+  });
 
-    function onMouseMove(eMove) {
-      element.style.left = eMove.clientX - xOffset + 'px';
-      element.style.top = eMove.clientY - yOffset + 'px';
+  window.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      element.style.left = e.clientX - xOffset + 'px';
+      element.style.top = e.clientY - yOffset + 'px';
     }
+  });
 
-    function onMouseUp() {
-      element.style.zIndex = '';
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mouseup', onMouseUp);
-    }
-
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseup', onMouseUp);
+  window.addEventListener('mouseup', () => {
+    isDragging = false;
+    element.style.zIndex = '';
   });
 }
-
 
 function minimizeBox(id, buttonContainerId) {
   const box = document.getElementById(id);
@@ -165,13 +150,8 @@ function minimizeBox(id, buttonContainerId) {
     box.classList.remove('hidden');
     restoreBtn.remove();
   };
-  const container = document.getElementById(buttonContainerId);
-  container.appendChild(restoreBtn);
-  console.log('Appended restore button for:', id, restoreBtn);
-  console.log('Minimized buttons container children:', container.children);
+  document.getElementById(buttonContainerId).appendChild(restoreBtn);
 }
-
-
 
 function updateSpotifyEmbed() {
   const input = document.getElementById('spotifyInput').value;
@@ -187,25 +167,23 @@ window.onload = () => {
   document.getElementById('shortBreak').value = 20;
   document.getElementById('longBreak').value = 30;
 
+  resetTimer();
+
+  // Set background default
+  changeBackground("bridge.png");
 
   // Positioning
   container.style.position = 'absolute';
   container.style.left = '50%';
   container.style.top = '40%';
-  
+  container.style.transform = 'translate(-50%, -50%)';
 
   spotifyBox.style.position = 'absolute';
   spotifyBox.style.left = '50%';
   spotifyBox.style.top = '65%';
-  
+  spotifyBox.style.transform = 'translate(-50%, -50%)';
 
   makeMovable(container);
   makeMovable(spotifyBox);
-
-  resetTimer();
-
-  // Set background default
-  changeBackground("bridge.png");
 };
-
 
