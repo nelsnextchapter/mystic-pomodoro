@@ -178,12 +178,12 @@ window.onload = () => {
   container.style.position = 'absolute';
   container.style.left = '50%';
   container.style.top = '40%';
-  container.style.transform = 'translate(-50%, -50%)';
+  
 
   spotifyBox.style.position = 'absolute';
   spotifyBox.style.left = '50%';
   spotifyBox.style.top = '65%';
-  spotifyBox.style.transform = 'translate(-50%, -50%)';
+  
 
   makeMovable(container);
   makeMovable(spotifyBox);
