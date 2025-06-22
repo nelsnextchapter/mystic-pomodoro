@@ -187,7 +187,6 @@ window.onload = () => {
 
   makeMovable(container);
   makeMovable(spotifyBox);
-  if (['BUTTON', 'SELECT', 'INPUT'].includes(e.target.tagName)) return;
 
   resetTimer();
 
