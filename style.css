@@ -22,14 +22,8 @@ body {
   cursor: move;
 }
 
-
 #spotify-box {
   width: 340px;
-  position: absolute;
-  left: 50%;
-  top: 65%;
-  margin-left: -170px; /* half of 340px */
-  margin-top: -100px;  /* approx half height, adjust as needed */
 }
 
 #timer {
@@ -121,10 +115,6 @@ body {
   margin-top: 10px;
 }
 
-#spotifyInput {
-  margin-top: 20px; 
-}
-
 #minimized-buttons {
   position: fixed;
   bottom: 10px;
@@ -133,18 +123,9 @@ body {
   display: flex;
   gap: 10px;
   z-index: 100;
-  /* Add these: */
-  min-width: 200px; /* or adjust as needed */
-  min-height: 40px;
-  padding: 5px 10px;
-  background-color: rgba(0, 0, 0, 0.5); /* temporary for visibility */
-  border-radius: 8px;
-  align-items: center; /* vertically center buttons */
-  justify-content: center;
 }
 
 #minimized-buttons button {
-  display: inline-block;
   padding: 6px 12px;
   font-size: 14px;
   border-radius: 8px;
@@ -153,7 +134,6 @@ body {
   border: none;
   cursor: pointer;
 }
-
 
 #minimized-buttons button:hover {
   background-color: #666;
@@ -220,28 +200,3 @@ body {
   justify-content: center;
   margin-top: 10px;
 }
-
- /* Align labels uniformly */
-.setting-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.setting-row label {
-  width: 180px;           /* Align labels uniformly */
-  margin-right: 10px;
-  font-weight: bold;
-  color:         /* Optional: gothic blood red */
-}
-
-.setting-row input,
-.setting-row select {
-  flex: 1;
-  padding: 4px;
-  font-size: 14px;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-}
-
-
