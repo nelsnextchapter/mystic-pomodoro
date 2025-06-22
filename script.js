@@ -25,13 +25,18 @@ function updateDisplay() {
 }
 
 function startTimer() {
-  if (isRunning) return;
+  if (isRunning) return; // already running, do nothing
+
+  // If totalTime is undefined or zero, initialize it
+  if (!totalTime || totalTime <= 0) {
+    const selectedMode = currentModeToKey(currentMode);
+    const minutes = getTimerMinutes(selectedMode);
+    totalTime = minutes * 60;
+    updateMode(selectedMode);
+    updateDisplay();
+  }
+
   isRunning = true;
-  const selectedMode = currentModeToKey(currentMode);
-  const minutes = getTimerMinutes(selectedMode);
-  totalTime = minutes * 60;
-  updateMode(selectedMode);
-  updateDisplay();
 
   timer = setInterval(() => {
     if (totalTime > 0) {
@@ -41,10 +46,14 @@ function startTimer() {
       clearInterval(timer);
       isRunning = false;
       playSound();
-      if (selectedMode === 'workMinutes') autoStartShortBreak();
+
+      if (currentMode === 'Reading/Productivity') {
+        autoStartShortBreak();
+      }
     }
   }, 1000);
 }
+
 
 function getTimerMinutes(selectedMode) {
   if (selectedMode === 'workMinutes') return parseInt(document.getElementById('workMinutes').value);
@@ -150,7 +159,12 @@ function makeMovable(element) {
 function minimizeBox(id, buttonContainerId) {
   const box = document.getElementById(id);
   box.classList.add('hidden');
+
+  // Check if restore button already exists to avoid duplicates
+  if (document.getElementById('restore-' + id)) return;
+
   const restoreBtn = document.createElement('button');
+  restoreBtn.id = 'restore-' + id;
   restoreBtn.textContent = `Restore ${id.includes("spotify") ? "Spotify" : "Timer"}`;
   restoreBtn.onclick = () => {
     box.classList.remove('hidden');
@@ -158,6 +172,7 @@ function minimizeBox(id, buttonContainerId) {
   };
   document.getElementById(buttonContainerId).appendChild(restoreBtn);
 }
+
 
 function updateSpotifyEmbed() {
   const input = document.getElementById('spotifyInput').value;
