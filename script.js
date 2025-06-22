@@ -172,14 +172,7 @@ window.onload = () => {
   document.getElementById('workMinutes').value = 60;
   document.getElementById('shortBreak').value = 20;
   document.getElementById('longBreak').value = 30;
-  makeMovable(document.getElementById('timer-container'));
-  makeMovable(document.getElementById('spotify-box'));
 
-
-  resetTimer();
-
-  // Set background default
-  changeBackground("bridge.png");
 
   // Positioning
   container.style.position = 'absolute';
@@ -194,6 +187,12 @@ window.onload = () => {
 
   makeMovable(container);
   makeMovable(spotifyBox);
+  if (['BUTTON', 'SELECT', 'INPUT'].includes(e.target.tagName)) return;
+
+  resetTimer();
+
+  // Set background default
+  changeBackground("bridge.png");
 };
 
 
