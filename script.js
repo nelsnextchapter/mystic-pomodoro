@@ -159,24 +159,18 @@ function makeMovable(element) {
 function minimizeBox(id, buttonContainerId) {
   const box = document.getElementById(id);
   box.classList.add('hidden');
-
-  // Check if restore button already exists
-  if (document.getElementById('restore-' + id)) {
-    console.log('Restore button already exists for', id);
-    return;
-  }
-
   const restoreBtn = document.createElement('button');
-  restoreBtn.id = 'restore-' + id;
   restoreBtn.textContent = `Restore ${id.includes("spotify") ? "Spotify" : "Timer"}`;
   restoreBtn.onclick = () => {
     box.classList.remove('hidden');
     restoreBtn.remove();
   };
-
-  document.getElementById(buttonContainerId).appendChild(restoreBtn);
-  console.log('Restore button created for', id);
+  const container = document.getElementById(buttonContainerId);
+  container.appendChild(restoreBtn);
+  console.log('Appended restore button for:', id, restoreBtn);
+  console.log('Minimized buttons container children:', container.children);
 }
+
 
 
 function updateSpotifyEmbed() {
