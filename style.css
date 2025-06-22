@@ -205,3 +205,25 @@ body {
   margin-top: 10px;
 }
 
+ /* Align labels uniformly */
+.setting-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.setting-row label {
+  width: 180px;           /* Align labels uniformly */
+  margin-right: 10px;
+  font-weight: bold;
+  color:         /* Optional: gothic blood red */
+}
+
+.setting-row input,
+.setting-row select {
+  flex: 1;
+  padding: 4px;
+  font-size: 14px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
