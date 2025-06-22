@@ -157,26 +157,23 @@ function makeMovable(element) {
 
 
 function minimizeBox(id, buttonContainerId) {
-  console.log('minimizeBox called with:', id, buttonContainerId);
   const box = document.getElementById(id);
   box.classList.add('hidden');
 
-  // Check if restore button already exists to avoid duplicates
+  // Check if restore button already exists
   if (document.getElementById('restore-' + id)) {
     console.log('Restore button already exists for', id);
     return;
   }
+
   const restoreBtn = document.createElement('button');
   restoreBtn.id = 'restore-' + id;
   restoreBtn.textContent = `Restore ${id.includes("spotify") ? "Spotify" : "Timer"}`;
-  
-  // DEBUG: add visible border temporarily
-  restoreBtn.style.border = "2px solid red";
-  
   restoreBtn.onclick = () => {
     box.classList.remove('hidden');
     restoreBtn.remove();
   };
+
   document.getElementById(buttonContainerId).appendChild(restoreBtn);
   console.log('Restore button created for', id);
 }
