@@ -157,11 +157,14 @@ function makeMovable(element) {
 
 
 function minimizeBox(id, buttonContainerId) {
+  console.log('minimizeBox called with:', id, buttonContainerId);
   const box = document.getElementById(id);
   box.classList.add('hidden');
 
   // Check if restore button already exists to avoid duplicates
-  if (document.getElementById('restore-' + id)) return;
+  if (document.getElementById('restore-' + id)) {
+    console.log('Restore button already exists for', id);
+    return;
 
   const restoreBtn = document.createElement('button');
   restoreBtn.id = 'restore-' + id;
@@ -171,6 +174,7 @@ function minimizeBox(id, buttonContainerId) {
     restoreBtn.remove();
   };
   document.getElementById(buttonContainerId).appendChild(restoreBtn);
+  console.log('Restore button created for', id);
 }
 
 
@@ -187,11 +191,6 @@ window.onload = () => {
   document.getElementById('workMinutes').value = 60;
   document.getElementById('shortBreak').value = 20;
   document.getElementById('longBreak').value = 30;
-
-  // Test restore button creation manually:
-  const testBtn = document.createElement('button');
-  testBtn.textContent = "Test Restore Button";
-  document.getElementById('minimized-buttons').appendChild(testBtn);
 
 
   // Positioning
