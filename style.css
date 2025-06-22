@@ -233,3 +233,11 @@ body {
   border: 1px solid #aaa;
   border-radius: 4px;
 }
+
+#minimized-buttons {
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid lime;
+}
+#minimized-buttons button {
+  border: 2px solid orange;
+}
