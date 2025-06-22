@@ -165,7 +165,7 @@ function minimizeBox(id, buttonContainerId) {
   if (document.getElementById('restore-' + id)) {
     console.log('Restore button already exists for', id);
     return;
-
+  }
   const restoreBtn = document.createElement('button');
   restoreBtn.id = 'restore-' + id;
   restoreBtn.textContent = `Restore ${id.includes("spotify") ? "Spotify" : "Timer"}`;
