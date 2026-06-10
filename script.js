@@ -123,7 +123,22 @@ function changeMode(modeText) {
 }
 
 function changeBackground(value) {
-  document.body.style.backgroundImage = `url('${value}')`;
+  const bgVideo = document.getElementById('bg-video');
+  const isVideo = value.toLowerCase().endsWith('.mp4');
+
+  if (isVideo) {
+    // Show video, clear image background
+    document.body.style.backgroundImage = 'none';
+    bgVideo.src = value;
+    bgVideo.style.display = 'block';
+    bgVideo.load();
+    bgVideo.play();
+  } else {
+    // Show image, hide video
+    bgVideo.style.display = 'none';
+    bgVideo.src = '';
+    document.body.style.backgroundImage = `url('${value}')`;
+  }
 }
 
 function makeMovable(element) {
