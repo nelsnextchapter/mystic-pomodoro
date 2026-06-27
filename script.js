@@ -194,7 +194,7 @@ window.onload = () => {
   resetTimer();
 
   // Set background default
-  changeBackground("bridge.png");
+  changeBackground("Town Square.png");
 
   // Positioning
   container.style.position = 'absolute';
